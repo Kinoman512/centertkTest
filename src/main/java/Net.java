@@ -34,12 +34,13 @@ public class Net {
 
             boolean bl = isCorrectAddress(ip);
            if( bl){
+               firstIp = ip;
+
                break;
 
            }else{
                System.out.println("The ip " + ip + " isn't correct!");
            }
-            firstIp = ip;
         }
 
         while(true){
@@ -49,18 +50,17 @@ public class Net {
 
             boolean bl = isCorrectAddress(ip);
             if( bl){
+                secondIp = ip;
+
                 break;
 
             }else{
                 System.out.println("The ip " + ip + " isn't correct!");
             }
-            secondIp = ip;
         }
 
 
-
-        Scanner sc2 = new Scanner(System.in);
-        System.out.println(sc2.next());
+        deltaAddress(firstIp, secondIp);
 
 
 
@@ -76,23 +76,26 @@ public class Net {
         n1 = Arrays.asList(strs1).stream().mapToInt(Integer::parseInt).toArray();
         n2 = Arrays.asList(strs2).stream().mapToInt(Integer::parseInt).toArray();
 
-        walkNode(0,true);
 
 
 
-
-
+        walkNodes(0,true);
 
         return false;
     }
 
-    public static void walkNode(int j, boolean start){
+    public static void walkNodes(int j, boolean start){
 
 
         if(j== 4){
             //print
             String ip = "" + temp[0] + "."+ temp[1]  + "." +temp[2]  + "." + temp[3];
-            System.out.println(ip);
+
+            boolean bl = IsReachable(ip);
+
+           System.out.println(ip + " availability is " + bl );
+           // System.out.println(ip );
+
             return;
         }
 
@@ -115,7 +118,7 @@ public class Net {
             }
 
             temp[j] = i;
-            walkNode(j + 1, start);
+            walkNodes(j + 1, start);
             start = false;
 
             //check y1 + y2 + y3 + y4
@@ -125,7 +128,7 @@ public class Net {
                     break;
                 }
             }
-            if( n1[j] == n2[j] ){
+            if( n1[j] == n2[j] && temp[j-1] ==n2[j-1] ){
                     break;
             }
         }
@@ -148,10 +151,11 @@ public class Net {
 
 
         final InetAddress host;
+        boolean isReached = false;
         try {
             host = InetAddress.getByName(ip);
-            boolean isReached = host.isReachable(1000);
-            System.out.println("host " + ip +" = " + isReached );
+             isReached = host.isReachable(1000);
+            //System.out.println("host " + ip +" = " + isReached );
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -160,7 +164,7 @@ public class Net {
         }
 
 
-        return false;
+        return isReached;
     }
 
 }

@@ -43,7 +43,7 @@ public class TestClass {
     public void testDeltaAddress(){
 
 
-        Net.deltaAddress("173.195.31.162", "173.195.32.165");
+        Net.deltaAddress("173.194.32.162", "173.195.33.162");
 
     }
 
