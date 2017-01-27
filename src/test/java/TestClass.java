@@ -39,6 +39,16 @@ public class TestClass {
     }
 
 
+    @Test
+    public void testDeltaAddress(){
+
+
+        Net.deltaAddress("173.195.31.162", "173.195.32.165");
+
+    }
+
+
+
 
 
 
