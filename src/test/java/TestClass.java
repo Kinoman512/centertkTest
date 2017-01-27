@@ -41,11 +41,17 @@ public class TestClass {
 
     @Test
     public void testDeltaAddress(){
-
-
         Net.deltaAddress("173.194.32.162", "173.195.33.162");
-
     }
+
+
+    @Test
+    public void testBook(){
+        Book.printNumbersByName("Иванов И.И.");
+        Book.printNumbersByName("Иванов A.И.");
+    }
+
+
 
 
 

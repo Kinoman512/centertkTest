@@ -73,11 +73,8 @@ public class Net {
         String strs1[] = ip.split("\\.");
         String strs2[] = ip2.split("\\.");
 
-        n1 = Arrays.asList(strs1).stream().mapToInt(Integer::parseInt).toArray();
-        n2 = Arrays.asList(strs2).stream().mapToInt(Integer::parseInt).toArray();
-
-
-
+        int[] v1 = Arrays.asList(strs1).stream().mapToInt(Integer::parseInt).toArray();
+        int[] v2 = Arrays.asList(strs2).stream().mapToInt(Integer::parseInt).toArray();
 
         walkNodes(0,true);
 
@@ -93,7 +90,11 @@ public class Net {
 
             boolean bl = IsReachable(ip);
 
-           System.out.println(ip + " availability is " + bl );
+
+            if(bl){
+                System.out.println(ip );
+            }
+           //System.out.println(ip + " availability is " + bl );
            // System.out.println(ip );
 
             return;
@@ -154,7 +155,7 @@ public class Net {
         boolean isReached = false;
         try {
             host = InetAddress.getByName(ip);
-             isReached = host.isReachable(1000);
+             isReached = host.isReachable(500);
             //System.out.println("host " + ip +" = " + isReached );
 
         } catch (UnknownHostException e) {
